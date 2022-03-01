@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Home from "./component/Home";
+import Sidebar from "./component/Sidebar";
+import { CategoryProvider } from "./context/CategoryProvider";
+import { NavigationProvider } from "./context/NavigationProvider";
+import { NotesProvider } from "./context/NotesProvider";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <NavigationProvider>
+      <CategoryProvider>
+        <NotesProvider>
+          <main className="flex py-2">
+            <Sidebar />
+            <Home />
+          </main>
+        </NotesProvider>
+      </CategoryProvider>
+    </NavigationProvider>
   );
 }
 
