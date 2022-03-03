@@ -19,17 +19,21 @@ const Note = ({ note }) => {
   }
 
   return (
-    <div className={`p-2 m-2 border radius-md note ${color}`}>
-      <div className="flex justify-between">
-        <h4>{title}</h4>
-        <span
-          className="icon-action flex center"
-          onClick={() => updateNote(id, { pin: !pin })}
-        >
-          {pin ? <BsPinFill size="20px" /> : <BsPin size="20px" />}
-        </span>
+    <div
+      className={`p-2 m-2 border radius-md note flex-col justify-between ${color}`}
+    >
+      <div>
+        <div className="flex justify-between">
+          <h4>{title}</h4>
+          <span
+            className="icon-action flex center"
+            onClick={() => updateNote(id, { pin: !pin })}
+          >
+            {pin ? <BsPinFill size="20px" /> : <BsPin size="20px" />}
+          </span>
+        </div>
+        <p>{description}</p>
       </div>
-      <p>{description}</p>
       <div className="flex items-center justify-between">
         <span className="radius-md px-2 bg-semi-transparent">
           {getCategoryTitle(categoryId)}
@@ -58,8 +62,8 @@ const Note = ({ note }) => {
           </span>
         </div>
       </div>
-      <div className="colors-container flex center">
-        {showColors && (
+      {showColors && (
+        <div className="colors-container flex center">
           <div className="flex bg-white radius-md shadow-gray colors-bar p-1 border">
             {colors.map((c, index) =>
               index === 0 ? (
@@ -77,8 +81,8 @@ const Note = ({ note }) => {
               )
             )}
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {isEditing && (
         <div className="edit-box flex center">

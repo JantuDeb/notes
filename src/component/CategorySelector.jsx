@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { BiPlus } from "react-icons/bi";
 import { MdCategory } from "react-icons/md";
 import { useCategories } from "../context/CategoryProvider";
+import AddCategory from "./AddCategory";
 
 const CategorySelector = ({ expanded, setExpanded, categoryId, setNote }) => {
   const [value, setValue] = useState("");
-  const {categories, addCategories, getCategoryTitle} = useCategories();
+  const { categories, addCategories, getCategoryTitle } = useCategories();
 
   function handleCategoryClick(id) {
     if (id) {
@@ -31,7 +31,7 @@ const CategorySelector = ({ expanded, setExpanded, categoryId, setNote }) => {
         <MdCategory />
       </button>
       <div className={`category ${expanded.category ? "expand" : "collapse"}`}>
-        <div className="flex items-center justify-between p-1">
+        {/* <div className="flex items-center justify-between p-1">
           <input
             type="text"
             placeholder="Enter a new category"
@@ -45,7 +45,12 @@ const CategorySelector = ({ expanded, setExpanded, categoryId, setNote }) => {
             className="cursor-pointer"
             onClick={() => handleCategoryClick()}
           />
-        </div>
+        </div> */}
+        <AddCategory
+          handleCategoryClick={handleCategoryClick}
+          value={value}
+          setValue={setValue}
+        />
         <ul className="m-0  list-unstyled">
           {categories.map((cat) => (
             <li

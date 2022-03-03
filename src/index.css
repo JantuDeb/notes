@@ -181,3 +181,8 @@ body {
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 }
+
+.category-list{
+  width: 100%;
+  max-width: 25rem;
+}

@@ -4,8 +4,6 @@ const CategoryContext = createContext([]);
 
 const CategoryProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
-  const [currCategory, setCurrCategory] = useState("");
-
   function addCategories(title) {
     if (!categories.some((cat) => cat.title === title)) {
       const newCategory = { id: v4(), title };
@@ -18,14 +16,26 @@ const CategoryProvider = ({ children }) => {
     if (id) return categories.find((cat) => cat.id === id)?.title;
   }
 
+  function deleteCategory(id) {
+    setCategories((categories) => categories.filter((cat) => cat.id !== id));
+  }
+
+  function updateCategory({ id, title }) {
+    if (title && title.length > 2) {
+      setCategories((categories) =>
+        categories.map((cat) => (cat.id === id ? { id, title } : cat))
+      );
+    }
+  }
+
   return (
     <CategoryContext.Provider
       value={{
         categories,
         addCategories,
         getCategoryTitle,
-        currCategory,
-        setCurrCategory,
+        deleteCategory,
+        updateCategory,
       }}
     >
       {children}

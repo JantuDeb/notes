@@ -1,7 +1,7 @@
 import React from "react";
 import { useCategories } from "../context/CategoryProvider";
 import { useNavigation } from "../context/NavigationProvider";
-import Category from "../pages/Category";
+import EditCategory from "../pages/EditCategory";
 import Notes from "../pages/Notes";
 
 const Home = () => {
@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <>
       {currentPage === "notes" && <Notes />}
-      {currentPage === "category" && <Category />}
+      {currentPage === "category" && <EditCategory />}
       {categories.some(cat=>cat.id===currentPage)&&<Notes/>}
     </>
   );
